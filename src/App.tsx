@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { StoreProvider } from './context/StoreContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
@@ -32,7 +32,7 @@ const ScrollToTop = () => {
 export function App() {
   return (
     <StoreProvider>
-      <BrowserRouter>
+      <HashRouter>
         <ScrollToTop />
         {/* Subtle Grain Texture Overlay */}
         <div className="grain-overlay" />
@@ -71,7 +71,7 @@ export function App() {
           <SearchModal />
           <ToastNotification />
         </div>
-      </BrowserRouter>
+      </HashRouter>
     </StoreProvider>
   );
 }
