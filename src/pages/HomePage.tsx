@@ -22,33 +22,39 @@ export const HomePage: React.FC = () => {
 
   useEffect(() => {
     // Parallax & entrance animation for Hero using GSAP
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        '.hero-stagger',
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1.2,
-          stagger: 0.15,
-          ease: 'power3.out',
+    try {
+      const ctx = gsap.context(() => {
+        gsap.fromTo(
+          '.hero-stagger',
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1.0,
+            stagger: 0.12,
+            ease: 'power3.out',
+          }
+        );
+
+        if (heroRef.current) {
+          gsap.to('.hero-bg-img', {
+            scale: 1.08,
+            yPercent: 12,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: heroRef.current,
+              start: 'top top',
+              end: 'bottom top',
+              scrub: true,
+            },
+          });
         }
-      );
+      }, heroRef);
 
-      gsap.to('.hero-bg-img', {
-        scale: 1.08,
-        yPercent: 12,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true,
-        },
-      });
-    }, heroRef);
-
-    return () => ctx.revert();
+      return () => ctx.revert();
+    } catch (err) {
+      console.warn("GSAP init warning:", err);
+    }
   }, []);
 
   const handleNewsletter = (e: React.FormEvent) => {

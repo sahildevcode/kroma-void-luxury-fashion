@@ -40,6 +40,14 @@ export const Navbar: React.FC = () => {
           {/* Left: Navigation links */}
           <nav className="hidden lg:flex items-center space-x-8 text-[12px] uppercase tracking-widest font-medium">
             <Link
+              to="/"
+              className="text-luxury-offwhite/80 hover:text-white transition-colors relative group py-1"
+            >
+              Home
+              <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-metallic transition-all duration-300 group-hover:w-full" />
+            </Link>
+
+            <Link
               to="/shop"
               className="text-luxury-offwhite/80 hover:text-white transition-colors relative group py-1"
             >
